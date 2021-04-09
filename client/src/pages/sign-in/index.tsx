@@ -1,7 +1,12 @@
 import React from "react";
+import * as S from "./styles";
 
 const SignIn = () => {
-  return <div>Sign-in Page</div>;
+  return (
+    <S.SignInContainer>
+      <div>Sign-in Page</div>
+    </S.SignInContainer>
+  );
 };
 
 export default SignIn;
