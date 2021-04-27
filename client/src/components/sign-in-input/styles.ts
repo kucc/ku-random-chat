@@ -9,4 +9,7 @@ export const SignInInput = styled.input`
   border: 1px solid ${THEME_COLOR.GRAY};
   border-radius: 0.7rem;
   padding: 0.5rem 1rem;
+  :focus {
+    border: 0.15rem solid ${THEME_COLOR.PRIMARY};
+  }
 `;
