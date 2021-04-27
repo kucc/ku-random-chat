@@ -3,9 +3,9 @@ import * as S from "./styles";
 import SignInInputProps from "./types";
 
 const SignInInput = (props: SignInInputProps) => {
-  const { placeholder } = props;
+  const { placeholder, type } = props;
 
-  return <S.SignInInput placeholder={placeholder} />;
+  return <S.SignInInput placeholder={placeholder} type={type} />;
 };
 
 export default SignInInput;

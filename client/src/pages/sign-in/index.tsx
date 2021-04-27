@@ -8,8 +8,8 @@ const SignIn = () => {
       <S.SignIn>
         <S.Logo>KU RANDOM CHAT</S.Logo>
         <S.Buttons>
-          <SignInInput placeholder={"아이디"} />
-          <SignInInput placeholder={"비밀번호"} />
+          <SignInInput placeholder={"아이디"} type="text" />
+          <SignInInput placeholder={"비밀번호"} type="password" />
           <S.SignInButton>로그인</S.SignInButton>
         </S.Buttons>
       </S.SignIn>

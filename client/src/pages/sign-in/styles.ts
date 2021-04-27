@@ -34,7 +34,6 @@ export const SignIn = styled.div`
   height: 70%;
   width: 70%;
   @media only screen and (min-width: ${BREAKPOINT}px) {
-    /* height: 50%; */
     width: 25%;
   }
 `;

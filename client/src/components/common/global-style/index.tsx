@@ -2,11 +2,17 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: 'NanumSquare', sans-serif !important;
+    font-family: 'NanumSquare', sans-serif;
     font-display: 'block';
     box-sizing : border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    input[type=password] {
+      font-family: 'Noto Sans KR', sans-serif !important;
+    &::placeholder {
+      font-family: "NanumSquare", sans-serif;
+    }
+  }
   }
   html {
     font-size : 10px;
