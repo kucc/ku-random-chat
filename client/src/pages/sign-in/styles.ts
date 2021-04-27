@@ -49,4 +49,5 @@ export const SignInButton = styled.div`
   color: white;
   background-color: ${THEME_COLOR.PRIMARY};
   border-radius: 0.5rem;
+  cursor: pointer;
 `;
