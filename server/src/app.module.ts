@@ -7,16 +7,17 @@ import { ReportModule } from './report/report.module';
 import { RoomModule } from './room/room.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
+import { AppGateway } from './app.gateway';
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath: '.env' }),
-    MongooseModule.forRoot(process.env.MONGODB_CONNECTION_CONFIG),
-    ChatModule,
-    ReportModule,
-    RoomModule,
-    UserModule,
+    // ConfigModule.forRoot({ envFilePath: '.env' }),
+    // MongooseModule.forRoot(process.env.MONGODB_CONNECTION_CONFIG),
+    // ChatModule,
+    // ReportModule,
+    // RoomModule,
+    // UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule {}
