@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Settings from '../../components/settings';
-import chatRoomList from '../../components/chat-room-list';
-import makeRoom from '../../components/make-room'
+import ChatRoomList from '../../components/chat-room-list';
+import MakeRoom from '../../components/make-room'
 
 const MatchPage: React.FC = () => {
     return (
@@ -10,10 +10,10 @@ const MatchPage: React.FC = () => {
               <Settings/>
           </div>
           <div>
-              <chatRoomList/>
+              <ChatRoomList/>
           </div>
           <div>
-              <makeRoom/>
+              <MakeRoom/>
           </div>
       </div>
     );  
