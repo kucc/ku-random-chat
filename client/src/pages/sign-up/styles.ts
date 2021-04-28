@@ -33,3 +33,7 @@ export const SignUpButton = styled.div`
     height: 4rem;
   }
 `;
+
+export const Copyright = styled.div`
+  font-size: 1.2rem;
+`;

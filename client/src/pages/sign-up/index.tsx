@@ -19,8 +19,8 @@ const SignUp = () => {
           type="text"
         />
       </S.InputContainer>
-
       <S.SignUpButton>가입하기</S.SignUpButton>
+      <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
     </S.SignUpContainer>
   );
 };
