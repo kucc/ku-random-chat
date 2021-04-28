@@ -5,7 +5,7 @@ export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   height: 100vh;
   width: 100%;
   background-color: ${THEME_COLOR.GRAY};
@@ -21,7 +21,7 @@ export const SignUpButton = styled.div`
   align-items: center;
   justify-content: center;
   width: 25rem;
-  height: 5rem;
+  height: 4rem;
   font-weight: 500;
   font-size: 2rem;
   color: white;
@@ -36,4 +36,5 @@ export const SignUpButton = styled.div`
 
 export const Copyright = styled.div`
   font-size: 1.2rem;
+  margin-top: 2rem;
 `;
