@@ -1,10 +1,17 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
   entry: "./src/index.tsx",
   devtool: "eval-source-map",
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      "@": path.resolve(__dirname, "src/"),
+      "@assets": path.resolve(__dirname, "src/assets/"),
+      "@components": path.resolve(__dirname, "src/components/"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+    },
   },
   module: {
     rules: [
@@ -17,8 +24,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
       filename: "index.html",
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
