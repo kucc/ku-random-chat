@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import GlobalStyle from "@components/common/global-style";
 import Home from "@pages/home";
 import SignIn from "./pages/sign-in";
+import SignUp from "./pages/sign-up";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route path="/sign-in" exact component={SignIn}></Route>
+          <Route path="/sign-up" exact component={SignUp}></Route>
           <Redirect from="*" to="/" />
         </Switch>
       </BrowserRouter>
