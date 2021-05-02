@@ -7,6 +7,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { AccessTokenConfig } from 'src/common/config';
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { SignInDTO } from './dto/sign-in.dto';
@@ -24,6 +25,8 @@ export class AuthController {
   async signIn(@Res() response: Response, @Body() signinDTO: SignInDTO) {
     const accessToken = await this.authService.signIn(signinDTO);
 
-    return response.cookie('AccessToken', accessToken);
+    return response.cookie('AccessToken', accessToken, {
+      maxAge: AccessTokenConfig.cookieExpiresIn,
+    });
   }
 }
