@@ -7,6 +7,8 @@ import { ReportModule } from './report/report.module';
 import { RoomModule } from './room/room.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: '.env' }),
@@ -15,6 +17,7 @@ import { ConfigModule } from '@nestjs/config';
     ReportModule,
     RoomModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
