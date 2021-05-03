@@ -21,4 +21,14 @@ export class AuthService {
     });
     await newUser.save();
   }
+
+  async isUniqueUserId(userId: string) {
+    const user = await this.userModel.findOne({ userId });
+    return user ? false : true;
+  }
+
+  async isUniqueEmail(email: string) {
+    const user = await this.userModel.findOne({ email });
+    return user ? false : true;
+  }
 }
