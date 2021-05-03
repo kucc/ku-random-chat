@@ -1,13 +1,13 @@
 import * as mongoose from 'mongoose';
-import UserModel from './user.schema';
+import UserSchema from './user.schema';
 
-const { Number, Boolean, ObjectId } = mongoose.Schema.Types;
+const { Number, Boolean } = mongoose.Schema.Types;
 
 const RoomSchema = new mongoose.Schema({
   isOpend: Boolean,
   isRandom: Boolean,
   maxMember: Number,
-  members: [UserModel],
+  members: [UserSchema],
 });
 
 export default RoomSchema;
