@@ -24,6 +24,5 @@ export class AppGateway implements OnGatewayInit {
   }
   afterInit(server: Server) {
     console.log('connected');
-    console.log(server);
   }
 }
