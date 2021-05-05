@@ -1,5 +1,7 @@
+import { SignIn } from '@/pages/sign-in/styles';
 import React from 'react';
 import ChatRoom from "../chat-room/index";
+import * as S from "./styles"
 
 function ChatRoomList(){
 	const roomList = [
@@ -23,14 +25,14 @@ function ChatRoomList(){
     	}
   	];
     return(
-        <div className = "chatRoomList">
+        <S.ChatRoomListContainer>
             {
                 roomList.length === 0 ? <span>개설된 채팅방이 없습니다!</span>
                 : roomList.map(room => (
                     <ChatRoom room = {room} key = {room.id}/>
                 ))
             }
-        </div>
+        </S.ChatRoomListContainer>
     )
 }
 
