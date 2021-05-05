@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./styles";
 import SignUpInput from "@components/sign-up-input";
+import authAPI from "@/common/lib/api/auth";
 
 const SignUp = () => {
   const [isIdChecked, setIdChecked] = useState(true);
@@ -14,8 +15,9 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const checkId = () => {
-    setIdChecked(false);
+  const checkId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = e.target.value;
+    setId(id);
   };
 
   const checkPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +48,11 @@ const SignUp = () => {
     } else {
       setEmailChecked(false);
     }
+  };
+
+  const signUp = async () => {
+    const newUser = await authAPI.signUp(id, password, email);
+    return newUser;
   };
 
   return (
@@ -83,7 +90,7 @@ const SignUp = () => {
           isChecked={isEmailChecked}
         />
       </S.InputContainer>
-      <S.SignUpButton>가입하기</S.SignUpButton>
+      <S.SignUpButton onClick={signUp}>가입하기</S.SignUpButton>
       <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
     </S.SignUpContainer>
   );
