@@ -44,11 +44,12 @@ export class AuthController {
   }
 
   @Post('/sign-in')
-  async signIn(@Res() response: Response, @Body() signinDTO: SignInDTO) {
+  async signIn(@Res() res: Response, @Body() signinDTO: SignInDTO) {
     const accessToken = await this.authService.signIn(signinDTO);
 
-    return response.cookie('AccessToken', accessToken, {
+    res.cookie('AccessToken', accessToken, {
       maxAge: AccessTokenConfig.cookieExpiresIn,
     });
+    res.json('success');
   }
 }

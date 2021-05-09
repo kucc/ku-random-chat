@@ -8,7 +8,6 @@ const instance = axios.create({
     'Access-Control-Allow-Origin': true,
   },
 });
-
 instance.interceptors.response.use(
   (response) => Promise.resolve(response),
   (error) => Promise.reject(error),
