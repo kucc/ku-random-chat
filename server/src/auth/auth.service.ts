@@ -15,7 +15,6 @@ import { SignInDTO } from './dto/sign-in.dto';
 import { SignUpDTO } from './dto/sign-up.dto';
 import * as argon2 from 'argon2';
 
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -26,7 +25,7 @@ export class AuthService {
 
   async createNewUser(signUpDTO: SignUpDTO) {
     const { userId, password, email } = signUpDTO;
-    const hashedPassword = await argon2.hash(signUpDTO.password);
+    const hashedPassword = await argon2.hash(password);
     const newUser = new this.userModel({
       userId,
       password: hashedPassword,
