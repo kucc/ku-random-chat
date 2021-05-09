@@ -6,3 +6,7 @@ export const JwtConfig = {
 export const AccessTokenConfig = {
   cookieExpiresIn: Number(process.env.ACCESSTOKEN_EXPIRATION) || 86400,
 };
+
+export const clientConfig = {
+  clientURL: process.env.CLIENT_URL || 'http://localhost:8080',
+};
