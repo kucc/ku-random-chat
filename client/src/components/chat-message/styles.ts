@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const MessageContainer = styled.div<{ isItMe: boolean }>`
+export const MessageContainer = styled.div<{ isMessageOwner: boolean }>`
   display: flex;
-  flex-direction: ${(props) => (props.isItMe ? "row-reverse" : "row")};
+  flex-direction: ${(props) => (props.isMessageOwner ? "row-reverse" : "row")};
   justify-content: flex-start;
   align-items: center;
   width: 100%;
@@ -22,16 +22,16 @@ export const MessageContentContainer = styled.div`
   max-width: 60%;
 `;
 
-export const UserName = styled.div<{ isItMe: boolean }>`
-  align-self: ${(props) => (props.isItMe ? "flex-end" : "flex-start")};
+export const UserName = styled.div<{ isMessageOwner: boolean }>`
+  align-self: ${(props) => (props.isMessageOwner ? "flex-end" : "flex-start")};
   margin-bottom: 0.3rem;
 `;
 
-export const MessageContent = styled.div<{ isItMe: boolean }>`
+export const MessageContent = styled.div<{ isMessageOwner: boolean }>`
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: solid 1px;
-  border-color: ${(props) => (props.isItMe ? "#00c6ff" : "#dc2430")};
+  border-color: ${(props) => (props.isMessageOwner ? "#00c6ff" : "#dc2430")};
   word-wrap: break-word;
 `;
 

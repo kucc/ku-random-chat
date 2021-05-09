@@ -11,10 +11,9 @@ const Chat = () => {
       <S.ChatScreen>
         {messages.map((message) => (
           <Message
-            key={message.objectId}
             userName={message.userName}
             message={message.message}
-            isItMe={message.isItMe}
+            isMessageOwner={message.isMessageOwner}
             time={message.time}
           />
         ))}
