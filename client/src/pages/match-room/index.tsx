@@ -19,7 +19,6 @@ const MatchRoom = () => {
           <ChatRoomList />
         </S.ChatRoomListContainer>
         <S.ButtonContainer onClick={toggleModal}>방만들기</S.ButtonContainer>
-        <S.ButtonContainer>랜덤채팅</S.ButtonContainer>
       </S.MatchRoomContainer>
       <CreateChatRoomModal show={show} onToggleModal={toggleModal} />
     </>
