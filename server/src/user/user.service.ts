@@ -17,4 +17,13 @@ export class UserService {
 
     return userDoc;
   }
+
+  async findUserByEmail(email: string): Promise<UserModel> {
+    const userDoc = await this.userModel.findOne({ email });
+    if (!userDoc) {
+      throw new NotFoundException('There is no corresponding user Email');
+    }
+
+    return userDoc;
+  }
 }
