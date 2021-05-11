@@ -1,5 +1,5 @@
 import roomAPI from '@/common/lib/api/room';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 import Modal from '../common/modal';
 import * as S from './styles';
@@ -10,17 +10,20 @@ const CreateChatRoomModal = ({
   onToggleModal,
 }: CreateChatRoomModalProps) => {
   const history = useHistory();
+  const [chatRoomTitle, setChatRoomTitle] = useState<string>('');
   const chatRoomTitleInput = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (chatRoomTitleInput.current) chatRoomTitleInput.current.focus();
   }, [show]);
 
   const createNewRoom = async () => {
-    if (!chatRoomTitleInput.current) return;
-    const chatRoomTitle = chatRoomTitleInput.current?.value;
     const newRoom = await roomAPI.createNewRoom(chatRoomTitle);
-
     history.push(`/chat/${newRoom.roomId}`);
+  };
+
+  const onChangeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChatRoomTitle(e.target.value);
   };
 
   return (
@@ -29,6 +32,7 @@ const CreateChatRoomModal = ({
       <S.ModalBody>
         <S.ChatRoomInfoInput
           placeholder={'채팅방 이름'}
+          onChange={onChangeInputHandler}
           ref={chatRoomTitleInput}
         />
         <S.ModalButtonContainer>
