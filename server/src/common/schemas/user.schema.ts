@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
   sex: String,
   age: Number,
   major: Number,
-  emailCertified: { type: Boolean, default: false },
+  emailVerified: { type: Boolean, default: false },
   reportedCount: { type: Number, default: 0 },
   isBlocked: { type: Boolean, default: false },
   blockDuration: Date,
