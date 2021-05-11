@@ -8,6 +8,7 @@ export interface UserModel extends Document {
   age: number;
   major: number;
   emailVerified: boolean;
+  verificationCode: string;
   reportedCount: number;
   isBlocked: boolean;
   blockDuration: Date;
