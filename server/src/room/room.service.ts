@@ -20,4 +20,8 @@ export class RoomService {
 
     return newRoom;
   }
+
+  getRoomList() {
+    return this.chatRoomList;
+  }
 }
