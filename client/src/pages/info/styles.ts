@@ -1,6 +1,19 @@
 import styled from "styled-components";
 import { BREAKPOINT, THEME_COLOR } from "@assets/constant";
 
+
+export const InfoTitle = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 90%;
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+`;
+
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,7 +49,6 @@ export const ModifyButton = styled.div`
   border-radius: 0.5rem;
   cursor: pointer;
   margin-top: 1.5rem;
-
   @media only screen and (min-width: ${BREAKPOINT}px) {
     height: 4rem;
   }
