@@ -1,16 +1,17 @@
-import ChatHeader from "@/components/chat-header";
-import React from "react";
-import * as S from "./styles";
-import messages from "./dummy-messages";
-import Message from "@/components/chat-message";
+import ChatHeader from '@/components/chat-header';
+import React from 'react';
+import * as S from './styles';
+import messages from './dummy-messages';
+import Message from '@/components/chat-message';
 
-const Chat = () => {
+const ChatRoomPage = () => {
   return (
     <S.ChatContainer>
       <ChatHeader />
       <S.ChatScreen>
         {messages.map((message) => (
           <Message
+            key={message.objectId}
             userName={message.userName}
             message={message.message}
             isMessageOwner={message.isMessageOwner}
@@ -27,4 +28,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatRoomPage;
