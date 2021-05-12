@@ -7,6 +7,7 @@ const Info = () => {
     return (
         <S.InfoContainer>
           <Header/>
+          <S.InfoTitle>기본정보 입력</S.InfoTitle>
           <S.InfoInputContainer>
             <InfoInput
               label="연령대"
