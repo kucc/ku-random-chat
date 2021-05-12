@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import * as S from "./styles";
-import SignUpInput from "@components/sign-up-input";
+import React, { useEffect, useState } from 'react';
+import * as S from './styles';
+import SignUpInput from '@components/sign-up-input';
+import authAPI from '@/common/lib/api/auth';
+import { useHistory } from 'react-router';
 
 const SignUp = () => {
   const [isIdChecked, setIdChecked] = useState(true);
@@ -10,12 +12,14 @@ const SignUp = () => {
   );
   const [isEmailChecked, setEmailChecked] = useState(true);
 
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const history = useHistory();
 
-  const checkId = () => {
-    setIdChecked(false);
+  const checkId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = e.target.value;
+    setId(id);
   };
 
   const checkPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,13 +43,18 @@ const SignUp = () => {
 
   const checkEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
-    const splitted = email.split("@");
-    if (splitted[1] === "korea.ac.kr") {
+    const splitted = email.split('@');
+    if (splitted[1] === 'korea.ac.kr') {
       setEmail(email);
       setEmailChecked(true);
     } else {
       setEmailChecked(false);
     }
+  };
+
+  const signUp = async () => {
+    const newUser = await authAPI.signUp(id, password, email);
+    history.replace('/');
   };
 
   return (
@@ -83,7 +92,7 @@ const SignUp = () => {
           isChecked={isEmailChecked}
         />
       </S.InputContainer>
-      <S.SignUpButton>가입하기</S.SignUpButton>
+      <S.SignUpButton onClick={signUp}>가입하기</S.SignUpButton>
       <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
     </S.SignUpContainer>
   );

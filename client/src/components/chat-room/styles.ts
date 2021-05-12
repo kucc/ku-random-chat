@@ -23,20 +23,16 @@ export const ChatRoomTitle = styled.div`
 `;
 
 export const ChatRoomMemberCountValue = styled.div`
+  display: flex;
   color: gray;
-  justify-component: center;
+  justify-content: center;
   align-items: center;
 `;
 
 export const ChatRoomMemberCount = styled.div`
-  justify-component: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
-`;
-
-export const LatestChat = styled.div``;
-
-export const LatestChatText = styled.div`
-  color: gray;
 `;
 
 export const ChatRoomInfo = styled.div`

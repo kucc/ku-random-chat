@@ -25,5 +25,6 @@ export const InfoButton = styled.div`
   &:hover {
     background-color: #B90000;
   }
+  cursor: pointer;
 `;
 
