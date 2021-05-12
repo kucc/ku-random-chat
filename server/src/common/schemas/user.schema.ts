@@ -9,6 +9,8 @@ const UserSchema = new mongoose.Schema({
   sex: String,
   age: Number,
   major: Number,
+  emailVerified: { type: Boolean, default: false },
+  verificationCode: { type: String, default: '' },
   reportedCount: { type: Number, default: 0 },
   isBlocked: { type: Boolean, default: false },
   blockDuration: Date,

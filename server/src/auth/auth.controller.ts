@@ -4,15 +4,22 @@ import {
   Controller,
   forwardRef,
   Inject,
+  Get,
   Post,
   Res,
   BadRequestException,
+  Param,
+  Req,
+  Redirect,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { AccessTokenConfig } from 'src/common/config';
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { SignInDTO } from './dto/sign-in.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { UserModel } from 'src/common/model/user.model';
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +27,7 @@ export class AuthController {
     private readonly authService: AuthService,
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
+    @InjectModel('User') private readonly userModel: Model<UserModel>,
   ) {}
 
   @Post('/sign-up')
@@ -41,6 +49,17 @@ export class AuthController {
     }
 
     await this.authService.createNewUser(signUpDTO);
+    await this.authService.sendVerificationEmail(email);
+  }
+
+  @Get('/verification/:token')
+  async verification(@Res() response: Response, @Param('token') token: string) {
+    const user = await this.userModel.findOne({ verificationCode: token });
+    if (user.verificationCode == token) {
+      user.emailVerified = true;
+      await user.save();
+      response.redirect('http://localhost:8080/sign-in');
+    }
   }
 
   @Post('/sign-in')
