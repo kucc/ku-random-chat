@@ -8,7 +8,7 @@ import { RoomModule } from './room/room.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { AppGateway } from './app.gateway';
+import { RoomGateWay } from './app.gateway';
 
 @Module({
   imports: [
@@ -21,6 +21,6 @@ import { AppGateway } from './app.gateway';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppGateway],
+  providers: [AppService, RoomGateWay],
 })
 export class AppModule {}

@@ -6,10 +6,16 @@ const roomAPI = {
   createNewRoom: async (roomTitle: string): Promise<Room> => {
     const { data: newRoom } = await axios.post<Room>(
       `${endpoints.ROOM}/create-room`,
-      roomTitle,
+      { roomTitle },
     );
 
     return newRoom;
+  },
+
+  getRoomList: async (): Promise<Room[]> => {
+    const { data: roomLIst } = await axios.get<Room[]>(`${endpoints.ROOM}`);
+
+    return roomLIst;
   },
 };
 
