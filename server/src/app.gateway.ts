@@ -17,7 +17,6 @@ export class RoomGateWay implements OnGatewayInit {
   @SubscribeMessage('joinRoom')
   handleConnect(client: Socket, { roomId }) {
     client.join(roomId);
-    this.server.emit('echo', 'echo from server');
   }
 
   @SubscribeMessage('send message')
