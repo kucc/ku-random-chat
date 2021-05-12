@@ -33,9 +33,9 @@ class SocketController {
       roomId: this.roomId,
       username: this.username,
     });
-    this.socket.on('chatToClient', (newMessages: roomMessage) => {
-      this.setRoomMessages([...this.messages, newMessages]);
-      this.messages.push(newMessages);
+    this.socket.on('chatToClient', (newMessage: roomMessage) => {
+      this.setRoomMessages([...this.messages, newMessage]);
+      this.messages.push(newMessage);
     });
   }
 
