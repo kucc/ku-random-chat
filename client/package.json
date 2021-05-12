@@ -23,13 +23,6 @@
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "babel-loader": "^8.2.2",
-<<<<<<< HEAD
-=======
-    "eslint": "^7.26.0",
-    "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-react": "^7.23.2",
->>>>>>> adfca356ff6287eb95d9a1616b9e8229deed1a4c
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "url-loader": "^4.1.1",
