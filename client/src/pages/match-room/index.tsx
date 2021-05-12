@@ -12,7 +12,7 @@ const MatchRoom = () => {
                 <ChatRoomList/>
             </S.ChatRoomListContainer>
             <S.ButtonContainer>방만들기</S.ButtonContainer>
-            <S.ButtonContainer>랜덤채팅</S.ButtonContainer>
+            <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
         </S.MatchRoomContainer>
     );
 };
