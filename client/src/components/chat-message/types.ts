@@ -1,6 +1,6 @@
 export default interface MessageProps {
-  userName: string;
+  sender: string;
   message: string;
-  isMessageOwner: boolean;
   time: Date;
+  isMessageOwner: boolean;
 }

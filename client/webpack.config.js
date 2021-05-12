@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -37,9 +39,15 @@ module.exports = {
       },
     ],
   },
+  output: {
+    filename: 'main.[hash].js',
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      path: path.resolve(__dirname, './dist'),
       filename: 'index.html',
     }),
   ],

@@ -18,10 +18,18 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/react-router-dom": "^5.1.7",
+    "@types/socket.io-client": "^1.4.36",
     "@types/styled-components": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "babel-loader": "^8.2.2",
+<<<<<<< HEAD
+=======
+    "eslint": "^7.26.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.23.2",
+>>>>>>> adfca356ff6287eb95d9a1616b9e8229deed1a4c
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "url-loader": "^4.1.1",
@@ -36,6 +44,7 @@
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "socket.io-client": "2.3.0",
     "styled-components": "^5.2.3",
     "typescript": "^4.2.3"
   },
