@@ -14,8 +14,7 @@ import { UserService } from 'src/user/user.service';
 import { SignInDTO } from './dto/sign-in.dto';
 import { SignUpDTO } from './dto/sign-up.dto';
 import * as argon2 from 'argon2';
-
-const nodemailer = require('nodemailer');
+import * as nodemailer from 'nodemailer';
 
 @Injectable()
 export class AuthService {
