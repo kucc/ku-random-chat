@@ -1,6 +1,7 @@
-import axios from "../axios";
-import endpoints from "@/common/endpoints";
-import SignUpModel from "@/common/model/sign-up";
+import axios from '../axios';
+import endpoints from '@/common/endpoints';
+import SignUpModel from '@/common/model/sign-up';
+import SignInModel from '@/common/model/sign-in';
 
 const authAPI = {
   signUp: async (
@@ -14,6 +15,13 @@ const authAPI = {
     );
 
     return newUser;
+  },
+  signIn: async (loginInfo: SignInModel): Promise<string> => {
+    const { data: result } = await axios.post<string>(
+      `${endpoints.AUTH_API}/sign-in`,
+      loginInfo
+    );
+    return result;
   },
 };
 

@@ -6,8 +6,9 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
+import { clientConfig } from './common/config';
 
-@WebSocketGateway({ cors: { origin: 'http://localhost:8080' } })
+@WebSocketGateway({ cors: { origin: clientConfig.clientURL } })
 export class AppGateway implements OnGatewayInit {
   @WebSocketServer() server: Server;
 
