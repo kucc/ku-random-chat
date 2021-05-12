@@ -20,6 +20,7 @@ const MatchRoom = () => {
         </S.ChatRoomListContainer>
         <S.ButtonContainer onClick={toggleModal}>방만들기</S.ButtonContainer>
       </S.MatchRoomContainer>
+      <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
       <CreateChatRoomModal show={show} onToggleModal={toggleModal} />
     </>
   );
