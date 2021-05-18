@@ -1,10 +1,11 @@
 import React from "react";
 import * as S from "./styles";
+import infoimage from "@assets/info.png";
 
 const Header = () => {
   return(
       <S.HeaderContainer>
-        <S.InfoButton>INFO</S.InfoButton>
+        <S.InfoButton src={infoimage}/>
       </S.HeaderContainer>
   );
 };

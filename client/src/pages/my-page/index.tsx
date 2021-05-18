@@ -4,7 +4,7 @@ import InfoInput from "@components/info-input";
 import Header from "@components/header";
 import MyPageInput from "@components/my-page-input";
 import MyPageConstant from "@components/my-page-constant"
-import { InfoInputContainer } from "../info/styles";
+import { InfoInputCarrier } from "../info/styles";
 
 const MyPage = () => {
   const [isPasswordChecked, setPasswordChecked] = useState(true);
@@ -40,7 +40,7 @@ const MyPage = () => {
       <S.InputContainer>
         <MyPageConstant
           label="아이디"
-          userid = "appie701"
+          userId = "appie701"
         />
         <MyPageInput
           label="새 비밀번호"
@@ -58,7 +58,7 @@ const MyPage = () => {
           isChecked={isConfirmedPasswordChecked}
         />
       </S.InputContainer>
-      <InfoInputContainer>
+      <InfoInputCarrier>
         <InfoInput
             label="연령대"
             value="24"
@@ -71,7 +71,7 @@ const MyPage = () => {
             label="성별"
             value="남"
         />
-      </InfoInputContainer>
+      </InfoInputCarrier>
       <S.ModifyButton>수정하기</S.ModifyButton>
       <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
     </S.MyPageContainer>
