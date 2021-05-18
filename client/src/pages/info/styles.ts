@@ -27,8 +27,8 @@ export const InfoCarrier = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
   @media only screen and (min-width: ${BREAKPOINT}px) {
     width: 27%;
   }
