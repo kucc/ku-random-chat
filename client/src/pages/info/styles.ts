@@ -23,24 +23,31 @@ export const InfoContainer = styled.div`
   background-color: ${THEME_COLOR.GRAY};
 `;
 
-export const InfoLabel = styled.div`
-    display: flex;
-    float: left;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
-`;
-
-export const InfoInputContainer = styled.div`
+export const InfoCarrier = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  @media only screen and (min-width: ${BREAKPOINT}px) {
+    width: 27%;
+  }
+`;
+
+
+export const InfoInputCarrier = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ModifyButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25rem;
+  width: 80%;
   height: 4rem;
   font-weight: 500;
   font-size: 2rem;
@@ -49,12 +56,10 @@ export const ModifyButton = styled.div`
   border-radius: 0.5rem;
   cursor: pointer;
   margin-top: 1.5rem;
-  @media only screen and (min-width: ${BREAKPOINT}px) {
-    height: 4rem;
-  }
 `;
 
 export const Copyright = styled.div`
   font-size: 1.2rem;
   margin-top: 2rem;
+  width: 100%;
 `;

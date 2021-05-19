@@ -45,7 +45,7 @@ class SocketController {
       sender: this.username,
       message,
       time: new Date(),
-    });
+    } as roomMessage);
   }
 }
 
@@ -102,7 +102,7 @@ const ChatRoomPage = () => {
         <S.MessageInput
           type="text"
           onChange={onChangeInputMessage}
-          onKeyDown={sendMessageByEnter}
+          onKeyPress={sendMessageByEnter}
           value={message}
         />
         <S.SendButton onClick={sendMessage}>전송</S.SendButton>

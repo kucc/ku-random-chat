@@ -13,11 +13,12 @@ export const HeaderContainer = styled.div`
   background-color: ${THEME_COLOR.PRIMARY};
 `;
 
-export const InfoButton = styled.div`
+export const InfoButton = styled.img`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
   margin-right: 2.5rem;
   outline: none;
   color: white;
@@ -25,6 +26,7 @@ export const InfoButton = styled.div`
   &:hover {
     background-color: #B90000;
   }
+  border-radius: 0.3rem;
   cursor: pointer;
 `;
 

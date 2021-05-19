@@ -4,7 +4,7 @@ import { BREAKPOINT, THEME_COLOR } from "@assets/constant";
 export const InfoInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 25rem;
+  width: 100%;
   margin-top: 2rem;
 `;
 
