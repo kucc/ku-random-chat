@@ -5,7 +5,7 @@ export const InfoInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 25rem;
-  margin-bottom: 1.9rem;
+  margin-top: 2rem;
 `;
 
 export const InfoLabel = styled.div`

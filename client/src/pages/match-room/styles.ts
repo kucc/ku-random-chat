@@ -14,7 +14,7 @@ export const ListLabel = styled.div`
     display: flex;
     font-size: 2rem;
     font-weight: 1000;
-    width: 100%;
+    width: 96%;
     height: 4rem;
     justify-content: flex-start;
     align-items: center;
@@ -26,7 +26,8 @@ export const ChatRoomListContainer = styled.div`
     float: left;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 94%;
+    margin-top: 0.1rem;
 
 `;
 
@@ -45,3 +46,7 @@ export const ButtonContainer = styled.div`
     margin-top: 2rem;
 `;
 
+export const Copyright = styled.div`
+  font-size: 1.2rem;
+  margin-top: 8rem;
+`;

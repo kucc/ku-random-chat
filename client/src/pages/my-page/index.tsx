@@ -3,23 +3,16 @@ import * as S from "./styles";
 import InfoInput from "@components/info-input";
 import Header from "@components/header";
 import MyPageInput from "@components/my-page-input";
+import MyPageConstant from "@components/my-page-constant"
 import { InfoInputContainer } from "../info/styles";
 
 const MyPage = () => {
-    const [isIdChecked, setIdChecked] = useState(true);
   const [isPasswordChecked, setPasswordChecked] = useState(true);
   const [isConfirmedPasswordChecked, setConfirmedPasswordChecked] = useState(
     true
   );
-  const [isEmailChecked, setEmailChecked] = useState(true);
 
-  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-
-  const checkId = () => {
-    setIdChecked(false);
-  };
 
   const checkPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
@@ -43,14 +36,11 @@ const MyPage = () => {
   return (
     <S.MyPageContainer>
       <Header/>
+      <S.MyPageTitle>내정보 보기</S.MyPageTitle>
       <S.InputContainer>
-        <MyPageInput
+        <MyPageConstant
           label="아이디"
-          placeholder="appie701"
-          type="text"
-          text="이미 사용 중인 아이디입니다"
-          checkInput={checkId}
-          isChecked={isIdChecked}
+          userid = "appie701"
         />
         <MyPageInput
           label="새 비밀번호"

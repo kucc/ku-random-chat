@@ -1,6 +1,18 @@
 import styled from "styled-components";
 import { BREAKPOINT, THEME_COLOR } from "@assets/constant";
 
+export const MyPageTitle = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 90%;
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+`;
+
 export const MyPageContainer = styled.div`
   display: flex;
   flex-direction: column;
