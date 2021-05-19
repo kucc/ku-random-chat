@@ -76,6 +76,7 @@ const ChatRoomPage = () => {
   const sendMessageByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (message.length === 0) return;
+      console.log(message);
       mySocketController.sendMessage(message);
       setMessage('');
     }
@@ -102,7 +103,7 @@ const ChatRoomPage = () => {
         <S.MessageInput
           type="text"
           onChange={onChangeInputMessage}
-          onKeyDown={sendMessageByEnter}
+          onKeyPress={sendMessageByEnter}
           value={message}
         />
         <S.SendButton onClick={sendMessage}>전송</S.SendButton>
