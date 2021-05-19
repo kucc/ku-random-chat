@@ -10,10 +10,21 @@ export const HomeContainer = styled.div`
     background-color: ${THEME_COLOR.GRAY};
 `;
 
+export const HomeCarrier = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    @media only screen and (min-width: ${BREAKPOINT}px) {
+    width: 27%;
+    }
+`;
+
 export const ImageContainer = styled.img`
     display: flex;
-    width: 25rem;
-    height: 25rem;
+    width: 50%;
+    height: 25%;
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
@@ -22,7 +33,7 @@ export const ImageContainer = styled.img`
 
 export const ButtonContainer = styled.div`
     display: flex;
-    width: 25rem;
+    width: 80%;
     height: 4rem;
     font-size: 2rem;
     font-weight: 500;

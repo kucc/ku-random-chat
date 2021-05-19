@@ -1,4 +1,5 @@
 export default interface InfoInputProps {
     label: string;
-    value?: string;
+    placeholder?: string | number;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

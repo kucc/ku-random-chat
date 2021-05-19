@@ -5,5 +5,6 @@ export default interface MyPageInputProps {
     text?: string;
     checkInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
     isChecked: boolean;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
   
