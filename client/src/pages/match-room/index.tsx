@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import ChatRoomList from '@components/chat-room-list';
 import Header from '@components/header';
-import CreateChatRoomModal from '@/components/create-chatroom-modal';
+import CreateChatRoomModal from '@components/create-chatroom-modal';
 
 const MatchRoom = () => {
   const [show, setShow] = useState(false);

@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import * as S from "./styles";
 import InfoInput from "@components/info-input";
 import Header from "@components/header";
 import MyPageInput from "@components/my-page-input";
 import MyPageConstant from "@components/my-page-constant"
 import { InfoInputCarrier } from "../info/styles";
+import  infoAPI from '@/common/lib/api/info';
+import  myAPI from '@/common/lib/api/mypage';
+import InfoModel from '@/common/model/info';
+import MyPwModel from '@/common/model/my-page';
+import MyIdModel from '@/common/model/my-page';
+import { mypageAction } from './types';
+import { useHistory } from 'react-router';
+
+const mypageReducer = (state: MyPwModel, action: mypageAction) => {
+  switch (action.type) {
+    case 'newpassword':
+      return { ...state, newPw: action.payload}
+    case 'confirmpassword':
+      return { ...state, confirmPw: action.payload}
+  }
+};
 
 const MyPage = () => {
   const [isPasswordChecked, setPasswordChecked] = useState(true);
-  const [isConfirmedPasswordChecked, setConfirmedPasswordChecked] = useState(
-    true
-  );
+  const [isConfirmedPasswordChecked, setConfirmedPasswordChecked] = useState(true);
 
   const [password, setPassword] = useState("");
 
@@ -33,6 +47,22 @@ const MyPage = () => {
     }
   };
 
+  const [mypw, dispatch] = useReducer(mypageReducer, {} as MyPwModel);
+  const history = useHistory();
+
+  const onChangeNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: 'newpassword', payload: e.currentTarget.value });
+  };
+
+  const onChangeConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: 'confirmpassword', payload: e.currentTarget.value });
+  };
+
+  const postNewPw = async () => {
+    const result = await myAPI.modifyPassword(mypw);
+    history.replace('/');
+  };
+
   return (
     <S.MyPageContainer>
       <S.MyPageCarrier>
@@ -50,6 +80,7 @@ const MyPage = () => {
             text="6 ~ 15 글자로 입력해 주세요"
             checkInput={checkPassword}
             isChecked={isPasswordChecked}
+            onChange = {onChangeNewPassword}
           />
           <MyPageInput
             label="새 비밀번호 확인"
@@ -57,6 +88,7 @@ const MyPage = () => {
             text="비밀번호가 일치하지 않습니다"
             checkInput={checkConfirmedPassword}
             isChecked={isConfirmedPasswordChecked}
+            onChange = {onChangeConfirmPassword}
           />
         </S.InputContainer>
         <InfoInputCarrier>
@@ -73,7 +105,7 @@ const MyPage = () => {
               value="남"
           />
         </InfoInputCarrier>
-        <S.ModifyButton>수정하기</S.ModifyButton>
+        <S.ModifyButton onClick = {postNewPw}>수정하기</S.ModifyButton>
         <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
       </S.MyPageCarrier>
     </S.MyPageContainer>

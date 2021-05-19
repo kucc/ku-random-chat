@@ -1,9 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useReducer } from "react";
 import * as S from "./styles";
 import InfoInput from "@components/info-input";
 import Header from "@components/header";
+import infoAPI from '@/common/lib/api/info';
+import InfoModel from '@/common/model/info';
+import { infoAction } from './types';
+import { useHistory } from 'react-router';
+
+
+const infoReducer = (state: InfoModel, action: infoAction) => {
+  switch (action.type) {
+    case 'age':
+      return { ...state, userId: action.payload };
+    case 'major':
+      return { ...state, major: action.payload };
+    case 'gender':
+      return { ...state, gender: action.payload };
+  }
+};
+
 
 const InfoPage = () => {
+    const [info, dispatch] = useReducer(infoReducer, {} as InfoModel);
+    const history = useHistory();
+
+    const onChangeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({ type: 'age', payload: e.currentTarget.value });
+    };
+
+    const onChangeMajor = (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({ type: 'major', payload: e.currentTarget.value });
+    };
+
+    const onChangeGender = (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({ type: 'gender', payload: e.currentTarget.value})
+    }
+
+    const postInfo = async () => {
+      const result = await infoAPI.infoEnter(info);
+      history.replace('/');
+    };
+
     return (
         <S.InfoContainer>
           <S.InfoCarrier>
@@ -13,17 +50,20 @@ const InfoPage = () => {
               <InfoInput
                 label="연령대"
                 value="24"
+                onChange = {onChangeAge}
               />
               <InfoInput
                 label="학과"
                 value="컴퓨터학과"
+                onChange = {onChangeMajor}
               />
               <InfoInput
                 label="성별"
                 value="남"
+                onChange = {onChangeGender}
               />
             </S.InfoInputCarrier>
-            <S.ModifyButton>입력하기</S.ModifyButton>
+            <S.ModifyButton onClick = {postInfo}>입력하기</S.ModifyButton>
             <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
           </S.InfoCarrier>
         </S.InfoContainer>

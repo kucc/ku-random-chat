@@ -3,7 +3,7 @@ import * as S from "./styles";
 import InfoInputProps from "./types";
 
 const InfoInput = (props: InfoInputProps) => {
-  const { label, value } = props;
+  const { label, value, onChange } = props;
 
   return (
     <S.InfoInputContainer>
@@ -11,6 +11,7 @@ const InfoInput = (props: InfoInputProps) => {
       <S.InfoInput
         placeholder={value}
         type="text"
+        onChange = {onChange}
       />
     </S.InfoInputContainer>
   );
