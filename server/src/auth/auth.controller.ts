@@ -62,6 +62,18 @@ export class AuthController {
     }
   }
 
+  @Get('/verification-check/:userId')
+  async verificationCheck(@Param('userId') userId: string) {
+    const user = await this.userService.findUserById(userId);
+    return user.emailVerified ? true : false;
+  }
+
+  @Get('/verification/send-email/:userId')
+  async sendEmail(@Param('userId') userId: string) {
+    const user = await this.userService.findUserById(userId);
+    await this.authService.sendVerificationEmail(user.email);
+  }
+
   @Post('/sign-in')
   async signIn(@Res() res: Response, @Body() signinDTO: SignInDTO) {
     const accessToken = await this.authService.signIn(signinDTO);
