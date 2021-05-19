@@ -15,7 +15,7 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Home}></Route>
+          <Route path="/home" exact component={Home}></Route>
           <Route
             path="/chat/:chatRoomId"
             exact
