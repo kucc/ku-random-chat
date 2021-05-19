@@ -1,13 +1,23 @@
 import React from 'react';
 import Modal from '../common/modal';
 import * as S from './styles';
-import { EmailVerificationModalProps } from './types';
+import { SignInAlertModalProps } from './types';
 import { STATIC_URL } from '@assets/constant';
+import authAPI from '@/common/lib/api/auth';
+import { useHistory } from 'react-router';
 
 const SignInAlertModal = ({
   show,
   onToggleModal,
-}: EmailVerificationModalProps) => {
+  userId,
+}: SignInAlertModalProps) => {
+  const history = useHistory();
+
+  const sendEmail = async () => {
+    await authAPI.sendEmail(userId);
+    history.go(0);
+  };
+
   return (
     <Modal show={show} onToggle={onToggleModal}>
       <S.ModalImage src={STATIC_URL.WARNING} />
@@ -19,7 +29,9 @@ const SignInAlertModal = ({
         </S.ModalText>
       </S.ModalBody>
       <S.ModalButton onClick={onToggleModal}>확인</S.ModalButton>
-      <S.ModalEmailButton>메일을 다시 받을래요</S.ModalEmailButton>
+      <S.ModalEmailButton onClick={sendEmail}>
+        메일을 다시 받을래요
+      </S.ModalEmailButton>
     </Modal>
   );
 };

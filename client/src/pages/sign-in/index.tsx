@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import * as S from './styles';
 import SignInInput from '@components/sign-in-input';
 import authAPI from '@/common/lib/api/auth';
 import SignInModel from '@/common/model/sign-in';
 import { signInAction } from './types';
 import { useHistory } from 'react-router';
+import SignInAlertModal from '@components/sign-in-alert-modal';
 
 const signInReducer = (state: SignInModel, action: signInAction) => {
   switch (action.type) {
@@ -18,6 +19,7 @@ const signInReducer = (state: SignInModel, action: signInAction) => {
 const SignIn = () => {
   const [signInInfo, dispatch] = useReducer(signInReducer, {} as SignInModel);
   const history = useHistory();
+  const [showModal, setShowModal] = useState(false);
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'userId', payload: e.currentTarget.value });
@@ -28,10 +30,19 @@ const SignIn = () => {
   };
 
   const postSignIn = async () => {
-    const result = await authAPI.signIn(signInInfo);
-    if (result === 'success') {
-      history.replace('/');
+    const isVerifiedUser = await authAPI.checkVerification(signInInfo.userId);
+    if (!isVerifiedUser) {
+      setShowModal(true);
+    } else {
+      const result = await authAPI.signIn(signInInfo);
+      if (result === 'success') {
+        history.replace('/');
+      }
     }
+  };
+
+  const closeModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -52,6 +63,11 @@ const SignIn = () => {
           <S.SignInButton onClick={postSignIn}>로그인</S.SignInButton>
         </S.Buttons>
       </S.SignIn>
+      <SignInAlertModal
+        show={showModal}
+        onToggleModal={closeModal}
+        userId={signInInfo.userId}
+      />
     </S.SignInContainer>
   );
 };
