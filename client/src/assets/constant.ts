@@ -8,4 +8,5 @@ export const THEME_COLOR = {
 
 export const STATIC_URL = {
   EMAIL: `https://user-images.githubusercontent.com/46309902/117921095-0e4fab80-b32b-11eb-98fe-35ed3a269288.png`,
+  WARNING: `https://user-images.githubusercontent.com/46309902/118754458-11eeaf80-b8a2-11eb-960c-c6db565c392a.png`,
 };
