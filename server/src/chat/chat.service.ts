@@ -11,7 +11,6 @@ export class ChatService {
   ) {}
 
   async createNewMessage(createMessageDTO: CreateMessageDTO) {
-    console.log(createMessageDTO);
     const newMessage = new this.chatModel(createMessageDTO);
     await newMessage.save();
   }
