@@ -8,6 +8,7 @@ import MatchRoom from './pages/match-room';
 import Info from './pages/info';
 import MyPage from './pages/my-page';
 import ChatRoomPage from './pages/chat';
+import Main from './pages/main';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
+          <Route path="/" exact component={Main}></Route>
           <Route path="/home" exact component={Home}></Route>
           <Route
             path="/chat/:chatRoomId"
