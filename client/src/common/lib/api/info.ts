@@ -7,13 +7,13 @@ const infoAPI = {
     userinfo: InfoModel
   ): Promise<InfoModel> => {
     const { data: result } = await axios.post<InfoModel>(
-      `${endpoints.INFO_API}/info`,
+      `${endpoints.INFO_API}`,
       userinfo
     );
     return result;
   },
   getInfo: async (): Promise<InfoModel> => {
-    const { data: Info } = await axios.get<InfoModel>(`${endpoints.INFO_API}/info`);
+    const { data: Info } = await axios.get<InfoModel>(`${endpoints.INFO_API}`);
 
     return Info;
   },

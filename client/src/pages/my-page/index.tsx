@@ -3,15 +3,15 @@ import * as S from "./styles";
 import InfoInput from "@components/info-input";
 import Header from "@components/header";
 import MyPageInput from "@components/my-page-input";
-import MyPageConstant from "@components/my-page-constant"
+import MyPageConstant from "@components/my-page-constant";
 import { InfoInputCarrier } from "../info/styles";
 import  infoAPI from '@/common/lib/api/info';
 import  myAPI from '@/common/lib/api/mypage';
 import InfoModel from '@/common/model/info';
 import MyPwModel from '@/common/model/my-page';
-import MyIdModel from '@/common/model/my-page';
 import { mypageAction } from './types';
 import { useHistory } from 'react-router';
+import axios from "axios";
 
 const mypageReducer = (state: MyPwModel, action: mypageAction) => {
   switch (action.type) {
@@ -23,6 +23,7 @@ const mypageReducer = (state: MyPwModel, action: mypageAction) => {
 };
 
 const MyPage = () => {
+  // password checking
   const [isPasswordChecked, setPasswordChecked] = useState(true);
   const [isConfirmedPasswordChecked, setConfirmedPasswordChecked] = useState(true);
 
@@ -47,9 +48,34 @@ const MyPage = () => {
     }
   };
 
-  const [mypw, dispatch] = useReducer(mypageReducer, {} as MyPwModel);
+  // state management
   const history = useHistory();
 
+  // 아이디 받아오기
+  const [mypageuserid, setUserId] = useState<string>(""); 
+  useEffect(() => {
+    getUserId();
+  }, []);
+
+  const getUserId = async () => {
+    const mypageid = await myAPI.getId();
+    setUserId(mypageid);
+  };
+
+  // 유저정보 받아오기 (나이, 전공, 성별)
+  const [mypageuserinfo, setUserInfo] = useState<InfoModel>({age: 24, major: "컴퓨터학과", gender:"남자"}); //초기화 안해도 괜찮나
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = async () => {
+    const mypageinfo = await infoAPI.getInfo();
+    setUserInfo(mypageinfo);
+  };
+
+  // 서버에 비밀번호 수정 전송
+  const [mypw, dispatch] = useReducer(mypageReducer, {} as MyPwModel);
+  
   const onChangeNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'newpassword', payload: e.currentTarget.value });
   };
@@ -61,7 +87,7 @@ const MyPage = () => {
   const postNewPw = async () => {
     const result = await myAPI.modifyPassword(mypw);
     history.replace('/');
-  };
+  }; 
 
   return (
     <S.MyPageContainer>
@@ -71,7 +97,7 @@ const MyPage = () => {
         <S.InputContainer>
           <MyPageConstant
             label="아이디"
-            userId = "appie701"
+            text = {mypageuserid}
           />
           <MyPageInput
             label="새 비밀번호"
@@ -92,17 +118,17 @@ const MyPage = () => {
           />
         </S.InputContainer>
         <InfoInputCarrier>
-          <InfoInput
+          <MyPageConstant
               label="연령대"
-              value="24"
+              text={mypageuserinfo!.age} // non null assertion
           />
-          <InfoInput
+          <MyPageConstant
               label="학과"
-              value="컴퓨터학과"
+              text={mypageuserinfo!.major}
           />
-          <InfoInput
+          <MyPageConstant
               label="성별"
-              value="남"
+              text={mypageuserinfo!.gender}
           />
         </InfoInputCarrier>
         <S.ModifyButton onClick = {postNewPw}>수정하기</S.ModifyButton>

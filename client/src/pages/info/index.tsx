@@ -49,17 +49,17 @@ const InfoPage = () => {
             <S.InfoInputCarrier>
               <InfoInput
                 label="연령대"
-                value="24"
+                placeholder="24"
                 onChange = {onChangeAge}
               />
               <InfoInput
                 label="학과"
-                value="컴퓨터학과"
+                placeholder="컴퓨터학과"
                 onChange = {onChangeMajor}
               />
               <InfoInput
                 label="성별"
-                value="남"
+                placeholder="남"
                 onChange = {onChangeGender}
               />
             </S.InfoInputCarrier>
