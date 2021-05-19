@@ -1,11 +1,12 @@
 import * as mongoose from 'mongoose';
 
-const { ObjectId, String } = mongoose.Schema.Types;
+const { Number, String, Date } = mongoose.Schema.Types;
 
 const ChatSchema = new mongoose.Schema({
-  roomId: { type: ObjectId, ref: 'Room' },
-  userName: String,
+  roomId: Number,
+  sender: String,
   message: String,
+  time: Date,
 });
 
 export default ChatSchema;

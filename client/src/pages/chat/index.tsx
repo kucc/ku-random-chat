@@ -45,7 +45,7 @@ class SocketController {
       sender: this.username,
       message,
       time: new Date(),
-    });
+    } as roomMessage);
   }
 }
 
@@ -76,7 +76,6 @@ const ChatRoomPage = () => {
   const sendMessageByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (message.length === 0) return;
-      console.log(message);
       mySocketController.sendMessage(message);
       setMessage('');
     }

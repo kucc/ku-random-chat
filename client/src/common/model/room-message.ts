@@ -1,5 +1,5 @@
 export default interface roomMessage {
-  room: number;
+  roomId: number;
   sender: string;
   message: string;
   time: Date;
