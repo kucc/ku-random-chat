@@ -1,11 +1,17 @@
 import ChatHeader from '@/components/chat-header';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import * as S from './styles';
 import Message from '@/components/chat-message';
 import { useParams } from 'react-router';
 import io from 'socket.io-client';
-import endpoints from '@/common/endpoints';
 import roomMessage from '@/common/model/room-message';
+import namespaces from '@/common/namespaces';
 interface ChatRoomId {
   chatRoomId: string;
 }
@@ -28,7 +34,7 @@ class SocketController {
   }
 
   init() {
-    this.socket = io(endpoints.API_BASE_URL);
+    this.socket = io(namespaces.ROOM);
     this.socket.emit('joinRoom', {
       roomId: this.roomId,
       username: this.username,
@@ -53,11 +59,18 @@ const ChatRoomPage = () => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState([] as roomMessage[]);
   const { chatRoomId } = useParams<ChatRoomId>();
+  const messageEnd = useRef<HTMLDivElement>(null);
 
   const mySocketController = useMemo(
     () => new SocketController(Number(chatRoomId), setMessages),
     [],
   );
+
+  const scrollToBottom = () => {
+    if (messageEnd.current) {
+      messageEnd.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     mySocketController.init();
@@ -71,6 +84,7 @@ const ChatRoomPage = () => {
     if (message.length === 0) return;
     mySocketController.sendMessage(message);
     setMessage('');
+    scrollToBottom();
   }, [message]);
 
   const sendMessageByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -78,6 +92,7 @@ const ChatRoomPage = () => {
       if (message.length === 0) return;
       mySocketController.sendMessage(message);
       setMessage('');
+      scrollToBottom();
     }
   };
 
@@ -96,6 +111,7 @@ const ChatRoomPage = () => {
             />
           );
         })}
+        <div ref={messageEnd}></div>
       </S.ChatScreen>
       <S.MessageContainer>
         <S.EmojiButton>😀</S.EmojiButton>
