@@ -8,6 +8,7 @@ import { RoomModule } from './room/room.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { RandomChatModule } from './random-chat/random-chat.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
     RoomModule,
     UserModule,
     AuthModule,
+    RandomChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
