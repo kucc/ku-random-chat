@@ -8,17 +8,19 @@ import { InfoInputCarrier } from "../info/styles";
 import  infoAPI from '@/common/lib/api/info';
 import  myAPI from '@/common/lib/api/mypage';
 import InfoModel from '@/common/model/info';
-import MyPwModel from '@/common/model/my-page';
+import MyPasswordModel from '@/common/model/my-page';
 import { mypageAction } from './types';
 import { useHistory } from 'react-router';
 import axios from "axios";
+import userAPI from '@/common/lib/api/user';
+import { UserModel } from '@/common/model/user';
 
-const mypageReducer = (state: MyPwModel, action: mypageAction) => {
+const mypageReducer = (state: MyPasswordModel, action: mypageAction) => {
   switch (action.type) {
     case 'newpassword':
-      return { ...state, newPw: action.payload}
+      return { ...state, newPassword: action.payload}
     case 'confirmpassword':
-      return { ...state, confirmPw: action.payload}
+      return { ...state, confirmPassword: action.payload}
   }
 };
 
@@ -52,29 +54,29 @@ const MyPage = () => {
   const history = useHistory();
 
   // 아이디 받아오기
-  const [mypageuserid, setUserId] = useState<string>(""); 
+  const [myPageUserId, setUserId] = useState<string>(""); 
   useEffect(() => {
     getUserId();
   }, []);
 
   const getUserId = async () => {
-    const mypageid = await myAPI.getId();
-    setUserId(mypageid);
+    const user = await userAPI.getUserInfo();
+    setUserId(user.userId);
   };
 
   // 유저정보 받아오기 (나이, 전공, 성별)
-  const [mypageuserinfo, setUserInfo] = useState<InfoModel>({age: 24, major: "컴퓨터학과", gender:"남자"}); //초기화 안해도 괜찮나
+  const [myPageUserInfo, setUserInfo] = useState<UserModel>(); //초기화 안해도 괜찮나
   useEffect(() => {
     getUserInfo();
   }, []);
 
   const getUserInfo = async () => {
-    const mypageinfo = await infoAPI.getInfo();
-    setUserInfo(mypageinfo);
+    const myPageInfo = await userAPI.getUserInfo();
+    setUserInfo(myPageInfo);
   };
 
   // 서버에 비밀번호 수정 전송
-  const [mypw, dispatch] = useReducer(mypageReducer, {} as MyPwModel);
+  const [myPassword, dispatch] = useReducer(mypageReducer, {} as MyPasswordModel);
   
   const onChangeNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'newpassword', payload: e.currentTarget.value });
@@ -84,9 +86,8 @@ const MyPage = () => {
     dispatch({ type: 'confirmpassword', payload: e.currentTarget.value });
   };
 
-  const postNewPw = async () => {
-    const result = await myAPI.modifyPassword(mypw);
-    history.replace('/');
+  const modifyPW = async () => {
+    const result = await userAPI.modifyPassword(myPageUserId, myPassword.confirmPassword);
   }; 
 
   return (
@@ -97,7 +98,7 @@ const MyPage = () => {
         <S.InputContainer>
           <MyPageConstant
             label="아이디"
-            text = {mypageuserid}
+            text = {myPageUserId}
           />
           <MyPageInput
             label="새 비밀번호"
@@ -120,18 +121,18 @@ const MyPage = () => {
         <InfoInputCarrier>
           <MyPageConstant
               label="연령대"
-              text={mypageuserinfo!.age} // non null assertion
+              text={myPageUserInfo!.age} // non null assertion
           />
           <MyPageConstant
               label="학과"
-              text={mypageuserinfo!.major}
+              text={myPageUserInfo!.major}
           />
           <MyPageConstant
               label="성별"
-              text={mypageuserinfo!.gender}
+              text={myPageUserInfo!.sex}
           />
         </InfoInputCarrier>
-        <S.ModifyButton onClick = {postNewPw}>수정하기</S.ModifyButton>
+        <S.ModifyButton onClick = {modifyPW}>수정하기</S.ModifyButton>
         <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
       </S.MyPageCarrier>
     </S.MyPageContainer>

@@ -34,7 +34,7 @@
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.3",
+    "mongoose": "^5.12.11",
     "nodemailer": "^6.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

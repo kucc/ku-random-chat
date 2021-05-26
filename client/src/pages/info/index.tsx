@@ -2,10 +2,10 @@ import React, { useReducer } from "react";
 import * as S from "./styles";
 import InfoInput from "@components/info-input";
 import Header from "@components/header";
-import infoAPI from '@/common/lib/api/info';
 import InfoModel from '@/common/model/info';
 import { infoAction } from './types';
 import { useHistory } from 'react-router';
+import userAPI from '@/common/lib/api/user';
 
 
 const infoReducer = (state: InfoModel, action: infoAction) => {
@@ -37,7 +37,7 @@ const InfoPage = () => {
     }
 
     const postInfo = async () => {
-      const result = await infoAPI.infoEnter(info);
+      const result = await userAPI.enterInfo(info.age, info.major, info.sex);
       history.replace('/');
     };
 
