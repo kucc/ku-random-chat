@@ -12,6 +12,9 @@ import { useParams } from 'react-router';
 import io from 'socket.io-client';
 import roomMessage from '@/common/model/room-message';
 import namespaces from '@/common/namespaces';
+import EmojiModal from '@/components/emoji-modal';
+import type { IEmojiData } from 'emoji-picker-react';
+
 interface ChatRoomId {
   chatRoomId: string;
 }
@@ -58,8 +61,14 @@ class SocketController {
 const ChatRoomPage = () => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState([] as roomMessage[]);
+  const [emoji, setEmoji] = useState<IEmojiData | null>(null);
+  const [show, setShow] = useState<boolean>(false);
   const { chatRoomId } = useParams<ChatRoomId>();
   const messageEnd = useRef<HTMLDivElement>(null);
+
+  const toggleModal = () => {
+    setShow(!show);
+  };
 
   const mySocketController = useMemo(
     () => new SocketController(Number(chatRoomId), setMessages),
@@ -97,33 +106,41 @@ const ChatRoomPage = () => {
   };
 
   return (
-    <S.ChatContainer>
-      <ChatHeader />
-      <S.ChatScreen>
-        {messages.map((message, idx) => {
-          return (
-            <Message
-              key={`message${idx}`}
-              sender={message.sender}
-              message={message.message}
-              isMessageOwner={mySocketController.username === message.sender}
-              time={message.time}
-            />
-          );
-        })}
-        <div ref={messageEnd}></div>
-      </S.ChatScreen>
-      <S.MessageContainer>
-        <S.EmojiButton>😀</S.EmojiButton>
-        <S.MessageInput
-          type="text"
-          onChange={onChangeInputMessage}
-          onKeyPress={sendMessageByEnter}
-          value={message}
-        />
-        <S.SendButton onClick={sendMessage}>전송</S.SendButton>
-      </S.MessageContainer>
-    </S.ChatContainer>
+    <>
+      <S.ChatContainer>
+        <ChatHeader />
+        <S.ChatScreen>
+          {messages.map((message, idx) => {
+            return (
+              <Message
+                key={`message${idx}`}
+                sender={message.sender}
+                message={message.message}
+                isMessageOwner={mySocketController.username === message.sender}
+                time={message.time}
+              />
+            );
+          })}
+          <div ref={messageEnd}></div>
+        </S.ChatScreen>
+        <S.MessageContainer>
+          <S.EmojiButton onClick={toggleModal}>😀</S.EmojiButton>
+          <S.MessageInput
+            type="text"
+            onChange={onChangeInputMessage}
+            onKeyPress={sendMessageByEnter}
+            value={message}
+          />
+          <S.SendButton onClick={sendMessage}>전송</S.SendButton>
+        </S.MessageContainer>
+      </S.ChatContainer>
+      <EmojiModal
+        show={show}
+        onToggleModal={toggleModal}
+        message={message}
+        setMessage={setMessage}
+      />
+    </>
   );
 };
 
