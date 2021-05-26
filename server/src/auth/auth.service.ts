@@ -65,7 +65,7 @@ export class AuthService {
 
     const VERIFICATION_LINK = `http://localhost:3000/api/auth/verification/${verificationCode}`;
 
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from: `KU Random Chat <${process.env.MAIL_ID}>`,
       to: email,
       subject: 'KU Random Chat 고려대학교 학생 인증',
@@ -75,7 +75,6 @@ export class AuthService {
       <a href=${VERIFICATION_LINK} role="button"> 학교 인증 </a>`,
     });
 
-    transporter.sendMail(info);
     transporter.close();
   }
 
