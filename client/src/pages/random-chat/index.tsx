@@ -7,6 +7,7 @@ const RandomChatPage = () => {
     <S.MainContainer>
       {isLoading ? (
         <S.LoadingContainer>
+          <S.Logo>RANDOM CHAT</S.Logo>
           <Sentry size={50} color="white" />
           <S.LoadingText>상대 찾는 중..</S.LoadingText>
         </S.LoadingContainer>

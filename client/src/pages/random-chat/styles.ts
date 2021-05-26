@@ -18,6 +18,14 @@ export const LoadingContainer = styled.div`
   justify-content: center;
 `;
 
+export const Logo = styled.div`
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #f5e8e8;
+`;
+
 export const LoadingText = styled.div`
   margin-top: 1rem;
   font-size: 1.5rem;
