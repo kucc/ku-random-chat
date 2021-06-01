@@ -4,7 +4,7 @@ import { BREAKPOINT, THEME_COLOR } from '@assets/constant';
 export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 `;
 
@@ -12,12 +12,12 @@ export const ChatScreen = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 90vh;
   margin-top: 3rem;
-  margin-bottom: 3rem;
   padding-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-bottom: 2rem;
   overflow-y: scroll;
 `;
 
@@ -28,12 +28,12 @@ export const MessageContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 6rem;
+  height: 8vh;
 `;
 
 export const EmojiButton = styled.div`
   height: 100%;
-  width: 6rem;
+  width: 8vh;
   display: flex;
   font-size: 4rem;
   justify-content: center;
@@ -54,8 +54,8 @@ export const MessageInput = styled.input`
 `;
 
 export const SendButton = styled.div`
-  width: 6rem;
-  height: 4rem;
+  width: 8vh;
+  height: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;

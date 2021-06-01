@@ -36,7 +36,7 @@ const SignIn = () => {
     } else {
       const result = await authAPI.signIn(signInInfo);
       if (result === 'success') {
-        history.replace('/');
+        history.replace('/home');
       }
     }
   };

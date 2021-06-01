@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RoomGateWay } from './app.gateway';
+import { RoomChatGateway } from './room-chat.gateway';
 
-describe('AppGateway', () => {
-  let gateway: RoomGateWay;
+describe('RoomChatGateway', () => {
+  let gateway: RoomChatGateway;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [RoomGateWay],
+      providers: [RoomChatGateway],
     }).compile();
 
-    gateway = module.get<RoomGateWay>(RoomGateWay);
+    gateway = module.get<RoomChatGateway>(RoomChatGateway);
   });
 
   it('should be defined', () => {
