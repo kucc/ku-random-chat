@@ -4,26 +4,23 @@ import { BREAKPOINT, THEME_COLOR } from '@assets/constant';
 export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 `;
 
 export const ChatScreen = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 90vh;
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-bottom: 2rem;
   overflow-y: scroll;
 `;
 
 export const MessageContainer = styled.div`
-  position: fixed;
-  bottom: 0px;
   width: 100%;
   display: flex;
   justify-content: space-between;

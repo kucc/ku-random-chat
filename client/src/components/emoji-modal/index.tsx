@@ -4,15 +4,12 @@ import Modal from '../common/modal';
 import * as S from './styles';
 import { EmojiModalProps } from './types';
 import type { IEmojiData } from 'emoji-picker-react';
+import { useCloseModal } from '@/contexts/toggleModalContext';
 
-const EmojiModal = ({
-  show,
-  onToggleModal,
-  message,
-  setMessage,
-}: // setEmoji,
-EmojiModalProps) => {
+const EmojiModal = ({ message, setMessage }: EmojiModalProps) => {
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | null>(null);
+  const closeModal = useCloseModal();
+  const closeButtonPressed = useCallback(() => closeModal(), []);
 
   const onEmojiClick = (event: React.MouseEvent, emojiObject: IEmojiData) => {
     setChosenEmoji(emojiObject);
@@ -28,12 +25,10 @@ EmojiModalProps) => {
   };
 
   return (
-    <Modal show={show} onToggle={onToggleModal}>
-      <S.ModalBody>
-        <Picker onEmojiClick={onEmojiClick} />
-        <S.ModalButton onClick={onToggleModal}>닫기</S.ModalButton>
-      </S.ModalBody>
-    </Modal>
+    <S.ModalBody>
+      <Picker onEmojiClick={onEmojiClick} />
+      <S.ModalButton onClick={closeButtonPressed}>닫기</S.ModalButton>
+    </S.ModalBody>
   );
 };
 
