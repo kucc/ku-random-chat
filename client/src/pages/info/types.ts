@@ -1,5 +1,5 @@
 export interface infoAction {
-    type: 'age' | 'major' | 'gender';
+    type: 'age' | 'major' | 'sex';
     payload: string;
 }
   

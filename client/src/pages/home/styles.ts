@@ -17,28 +17,52 @@ export const HomeCarrier = styled.div`
     height: 100%;
     width: 100%;
     @media only screen and (min-width: ${BREAKPOINT}px) {
-    width: 27%;
+        width: 24%;
     }
 `;
 
 export const ImageContainer = styled.img`
-    display: flex;
-    width: 50%;
+    width: 100%;
     height: 25%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
+    border-bottom: 0.5rem solid black;
 `;
 
+export const ModeSelectLabel = styled.h1`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    width: 100%;
+    height: 3rem;
+    margin-top: 5rem;
+`;
+
+export const AllModeContainer = styled.div`
+    display: flex;
+    margin-top: 8rem;
+`;
+
+export const EachModeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+`;
+
+export const ModeImgContainer = styled.img`
+    width: 80%;
+    height: 65%;
+
+`;
 
 export const ButtonContainer = styled.div`
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 80%;
     height: 4rem;
     font-size: 2rem;
-    font-weight: 500;
-    align-items: center;
-    justify-content: center;
+    font-weight: 600;
     color: white;
     background-color: ${THEME_COLOR.PRIMARY};
     border-radius: 0.5rem;
@@ -49,4 +73,6 @@ export const ButtonContainer = styled.div`
 export const Copyright = styled.div`
   font-size: 1.2rem;
   margin-top: 8rem;
+  position: absolute;
+  bottom: 1rem;
 `;

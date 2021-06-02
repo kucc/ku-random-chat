@@ -23,10 +23,7 @@ export const InfoButton = styled.img`
   outline: none;
   color: white;
   background-color: ${THEME_COLOR.PRIMARY};
-  &:hover {
-    background-color: #B90000;
-  }
-  border-radius: 0.3rem;
+  border-radius: 50%;
   cursor: pointer;
 `;
 

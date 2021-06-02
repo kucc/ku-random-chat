@@ -11,17 +11,17 @@ import userAPI from '@/common/lib/api/user';
 const infoReducer = (state: InfoModel, action: infoAction) => {
   switch (action.type) {
     case 'age':
-      return { ...state, userId: action.payload };
+      return { ...state, age: Number(action.payload) };
     case 'major':
       return { ...state, major: action.payload };
-    case 'gender':
-      return { ...state, gender: action.payload };
+    case 'sex':
+      return { ...state, sex: action.payload };
   }
 };
 
 
 const InfoPage = () => {
-    const [info, dispatch] = useReducer(infoReducer, {} as InfoModel);
+    const [info, dispatch] = useReducer(infoReducer, { } as InfoModel );
     const history = useHistory();
 
     const onChangeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,13 +32,13 @@ const InfoPage = () => {
       dispatch({ type: 'major', payload: e.currentTarget.value });
     };
 
-    const onChangeGender = (e: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch({ type: 'gender', payload: e.currentTarget.value})
-    }
+    const onChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({ type: 'sex', payload: e.currentTarget.value});
+    };
 
     const postInfo = async () => {
       const result = await userAPI.enterInfo(info.age, info.major, info.sex);
-      history.replace('/');
+      history.push('/my-page');
     };
 
     return (
@@ -60,7 +60,7 @@ const InfoPage = () => {
               <InfoInput
                 label="성별"
                 placeholder="남"
-                onChange = {onChangeGender}
+                onChange = {onChangeSex}
               />
             </S.InfoInputCarrier>
             <S.ModifyButton onClick = {postInfo}>입력하기</S.ModifyButton>
