@@ -12,8 +12,9 @@ import { useParams } from 'react-router';
 import io from 'socket.io-client';
 import roomMessage from '@/common/model/room-message';
 import namespaces from '@/common/namespaces';
-import EmojiModal from '@/components/emoji-modal';
 import type { IEmojiData } from 'emoji-picker-react';
+import { useOpenModal } from '@/contexts/toggleModalContext';
+import EmojiModal from '@/components/emoji-modal';
 
 interface ChatRoomId {
   chatRoomId: string;
@@ -62,13 +63,15 @@ const ChatRoomPage = () => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState([] as roomMessage[]);
   const [emoji, setEmoji] = useState<IEmojiData | null>(null);
-  const [show, setShow] = useState<boolean>(false);
   const { chatRoomId } = useParams<ChatRoomId>();
   const messageEnd = useRef<HTMLDivElement>(null);
+  const openEmojiModal = useOpenModal();
 
-  const toggleModal = () => {
-    setShow(!show);
-  };
+  const emojiButtonPressed = useCallback(
+    () =>
+      openEmojiModal(<EmojiModal message={message} setMessage={setMessage} />),
+    [message],
+  );
 
   const mySocketController = useMemo(
     () => new SocketController(Number(chatRoomId), setMessages),
@@ -124,7 +127,7 @@ const ChatRoomPage = () => {
           <div ref={messageEnd}></div>
         </S.ChatScreen>
         <S.MessageContainer>
-          <S.EmojiButton onClick={toggleModal}>😀</S.EmojiButton>
+          <S.EmojiButton onClick={emojiButtonPressed}>😀</S.EmojiButton>
           <S.MessageInput
             type="text"
             onChange={onChangeInputMessage}
@@ -134,12 +137,6 @@ const ChatRoomPage = () => {
           <S.SendButton onClick={sendMessage}>전송</S.SendButton>
         </S.MessageContainer>
       </S.ChatContainer>
-      <EmojiModal
-        show={show}
-        onToggleModal={toggleModal}
-        message={message}
-        setMessage={setMessage}
-      />
     </>
   );
 };

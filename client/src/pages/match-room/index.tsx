@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as S from './styles';
 import ChatRoomList from '@components/chat-room-list';
 import Header from '@components/header';
 import CreateChatRoomModal from '@components/create-chatroom-modal';
+import { useOpenModal } from '@/contexts/toggleModalContext';
 
 const MatchRoom = () => {
-  const [show, setShow] = useState(false);
-  const toggleModal = () => {
-    setShow(!show);
-  };
+  const openModal = useOpenModal();
+  const openButtonPressed = useCallback(
+    () => openModal(<CreateChatRoomModal />),
+    [],
+  );
 
   return (
     <>
@@ -18,10 +20,11 @@ const MatchRoom = () => {
         <S.ChatRoomListContainer>
           <ChatRoomList />
         </S.ChatRoomListContainer>
-        <S.ButtonContainer onClick={toggleModal}>방만들기</S.ButtonContainer>
+        <S.ButtonContainer onClick={openButtonPressed}>
+          방만들기
+        </S.ButtonContainer>
       </S.MatchRoomContainer>
       <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
-      <CreateChatRoomModal show={show} onToggleModal={toggleModal} />
     </>
   );
 };

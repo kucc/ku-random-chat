@@ -4,6 +4,7 @@ import SignUpInput from '@components/sign-up-input';
 import authAPI from '@/common/lib/api/auth';
 import { useHistory } from 'react-router';
 import EmailVerificationModal from '@components/email-verification-modal';
+import { useOpenModal } from '@/contexts/toggleModalContext';
 
 const SignUp = () => {
   const [isIdChecked, setIdChecked] = useState(true);
@@ -15,14 +16,8 @@ const SignUp = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const history = useHistory();
 
-  const [showModal, setShowModal] = useState(false);
-
-  const closeModal = () => {
-    setShowModal(!showModal);
-    history.replace('/');
-  };
+  const openModal = useOpenModal();
 
   const checkId = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.value;
@@ -61,7 +56,7 @@ const SignUp = () => {
 
   const signUp = async () => {
     const newUser = await authAPI.signUp(id, password, email);
-    setShowModal(true);
+    openModal(<EmailVerificationModal />);
   };
 
   return (
@@ -101,7 +96,6 @@ const SignUp = () => {
       </S.InputContainer>
       <S.SignUpButton onClick={signUp}>가입하기</S.SignUpButton>
       <S.Copyright>ⓒ KU RANDOM CHAT All rights reserved.</S.Copyright>
-      <EmailVerificationModal show={showModal} onToggleModal={closeModal} />
     </S.SignUpContainer>
   );
 };

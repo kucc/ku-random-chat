@@ -1,15 +1,20 @@
-import React from 'react';
-import Modal from '../common/modal';
+import React, { useCallback } from 'react';
 import * as S from './styles';
 import { EmailVerificationModalProps } from './types';
 import { STATIC_URL } from '@assets/constant';
+import { useCloseModal } from '@/contexts/toggleModalContext';
+import { useHistory } from 'react-router';
 
-const EmailVerificationModal = ({
-  show,
-  onToggleModal,
-}: EmailVerificationModalProps) => {
+const EmailVerificationModal = ({}: EmailVerificationModalProps) => {
+  const history = useHistory();
+  const closeModal = useCloseModal();
+  const confirmPressed = useCallback(() => {
+    closeModal();
+    history.replace('/');
+  }, []);
+
   return (
-    <Modal show={show} onToggle={onToggleModal}>
+    <>
       <S.ModalImage src={STATIC_URL.EMAIL} />
       <S.ModalHeaderText>메일 발송 완료</S.ModalHeaderText>
       <S.ModalBody>
@@ -18,8 +23,8 @@ const EmailVerificationModal = ({
           클릭하여 고려대학교 학생 인증을 해 주세요.
         </S.ModalText>
       </S.ModalBody>
-      <S.ModalButton onClick={onToggleModal}>확인</S.ModalButton>
-    </Modal>
+      <S.ModalButton onClick={confirmPressed}>확인</S.ModalButton>
+    </>
   );
 };
 

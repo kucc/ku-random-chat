@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import { ModalDivProps } from './types';
 
-export const Modal = styled.div<ModalDivProps>`
-  display: ${(props) => (props.show ? 'flex' : 'none')};
+export const Modal = styled.div`
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -11,6 +9,7 @@ export const Modal = styled.div<ModalDivProps>`
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
   justify-content: center;
   align-items: center;
 `;

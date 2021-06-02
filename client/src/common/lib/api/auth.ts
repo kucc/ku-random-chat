@@ -24,8 +24,8 @@ const authAPI = {
     return result;
   },
 
-  checkVerification: async (userId: string): Promise<SignInModel> => {
-    const { data: result } = await axios.get<SignInModel>(
+  checkVerification: async (userId: string): Promise<boolean> => {
+    const { data: result } = await axios.get<boolean>(
       `${endpoints.AUTH_API}/verification-check/${userId}`,
     );
     return result;
