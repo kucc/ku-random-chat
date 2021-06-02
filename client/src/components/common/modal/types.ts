@@ -1,10 +1,5 @@
-export interface ModalProps {
-  children?: React.ReactNode;
-  show?: boolean;
-  onToggle?: () => void;
-}
+import { ReactElement } from 'react';
 
-export interface ModalDivProps {
-  show?: boolean;
-  toggleModalShow?: () => void;
+export interface ModalProps {
+  modalContent: ReactElement | null;
 }
