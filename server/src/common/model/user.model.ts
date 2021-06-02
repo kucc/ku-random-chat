@@ -4,9 +4,9 @@ export interface UserModel extends Document {
   userId: string;
   email: string;
   password: string;
-  sex: string;
   age: number;
-  major: number;
+  major: string;
+  sex: string;
   emailVerified: boolean;
   verificationCode: string;
   reportedCount: number;
