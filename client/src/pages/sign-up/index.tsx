@@ -56,7 +56,7 @@ const SignUp = () => {
 
   const signUp = async () => {
     const newUser = await authAPI.signUp(id, password, email);
-    <EmailVerificationModal />;
+    openModal(<EmailVerificationModal />);
   };
 
   return (
